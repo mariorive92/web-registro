@@ -1,0 +1,11 @@
+
+
+body { /*en el body del index.html pongo un color de fondo uno como verde grisaceo*/
+background: #1f4037;
+background: -webkit-linear-gradient(to right, #99f2c8, #1f4037);
+background: linear-gradient(to right, #99f2c8, #1f4037);
+}
+
+
+
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title><!--Titulo de la pestaña-->
+    <!-- portada con bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous">
+       <!-- google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shalimar&display=swap" rel="stylesheet">
+      <!--Conexion con main.css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+<main class="container p-4"><!-- Con container lo que hago es centra la informacion en la pagina, mediante margenes-->
+    <h1 class="display-4 text-center mt-4"><i>Registro</i></h1><br><!--Titulo principal de h1, Registro-->
+    <div class="row">
+      <div class="col-md-7 offset-md-3 my-auto"><!--hago una division la cual desde mi punto de vista se ve bien la infomacion-->
+       <div class="card"><!--Realizo una division de la informacion en dos partes-->
+       <div class="card-header"><!--Primera parte el header la cabecera, para introducir informacion-->
+       {% with messages = get_flashed_messages() %}<!-- con jinja hago un condicional if y un bucle for para que me de la informacion deseada-->
+     {% if messages %}
+     {% for message in messages %}
+
+           <div class="alert alert-warning alert-dismissible fade show" role="alert"><!--Defino el bloque donde viene la informacion deseada-->
+        <h5>{{ message }}</h5><!--Mensaje de contacto eliminado o contacto creado en el registro-->
+             <button type="button"  class="btn btn-light"   data-bs-dismiss="alert">Eliminar</button><!-- Aqui creo el boton para eliminar la pestaña-->
+           </div>
+                <!--Esta linea de codigo acciona a que la pestaña se cierre una vez dado en eliminar-->
+               <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+          </div>
+           <!--Cierre de condicionales y bucles de Flask-->
+     {% endfor %}
+     {% endif %}
+     {% endwith %}
+
+     <!-- Enlazamos el html con la ruta de crear-registro definida en el main-->
+     <form action="/crear-registro" method="post">
+
+          <!--Creo una división dentro del card-header-->
+          <div class="form-group">
+              <!--Estos son los aspectos a introducir para el registro, son unos input-->
+             <input type="text" name="nombre_registro" placeholder="nombre" class="form-control" autofocus>
+             <input type="email" name="email" placeholder="email" class="form-control" autofocus>
+              <input type="number" name="telefono" placeholder="telefono" class="form-control" autofocus>
+             <input type="text" name="ciudad" placeholder="ciudad" class="form-control" autofocus>
+             </div>
+            <!--Boton con su tamaño definido para guardar los diferente campos-->
+            <button type="submit" class="btn btn-primary btn-block">
+             <!--Nombre del boton-->
+             Guardar
+            </button>
+            </div>
+          </form>
+ <div class="card-body" ><!--Segunda parte el body para que nos arroje la informacion registrada-->
+ <ul class="list-group">
+     <!--Bucle for con jinja para imprimir el contenido del registro-->
+ {% for registro in lista_de_registro %}
+ <li  class="list-group-item" >
+     <div class="container pt-4">
+         <!--Aqui creo celdas para la impresion de los diferentes contenidos del registro-->
+         <td>Nombre: {{registro.nombre}}</td><br>
+         <td>Email: {{registro.email}}</td><br>
+         <td>Telefono: {{registro.telefono}}</td><br>
+         <td>Ciudad: {{registro.ciudad}}</td><br>
+     </div>
+       </span>
+     <!--Conexión con la ruta del main registro-hecho-->
+     <a href="/registro-hecho/{{registro.id}}" style="text-decoration:none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" class="bi bi-check2-circle" viewBox="0 0 16 16">
+    <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+    <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+   </svg>
+         <!--Conexión con la ruta del main eliminar-registro-->
+     <a href="/eliminar-registro/{{registro.id}}" style="text-decoration:none">
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
+   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+     <a/>
+ </li>
+     <!--Cierre del bucle for-->
+ {% endfor %}
+ </ul>
+</div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

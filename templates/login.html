@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina Login</title>
+    <!--Formato de portada con bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css" integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd" crossorigin="anonymous">
+    <!--Conexión con style.css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<main>
+
+
+
+
+
+
+ <div class="card">
+     <h1 class="titulo">Registro de Acceso</h1><br>
+<form action="/" method="post" >
+    <h2><h2>Usuario:<br>
+    <input type="text" name='username' class="form-control"><br>
+    Contraseña:<br>
+    <input  type= "password" name='password' class="form-control"><br><br>
+
+        <button class="btn btn-primary btn-block"  type="submit" >Entrar</button>     <!--class="boton"-->
+
+
+</form>
+<h1>{{info}}</h1>
+ </div>
+
+</main>
+</body>
+</html>
